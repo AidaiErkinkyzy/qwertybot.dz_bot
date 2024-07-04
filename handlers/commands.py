@@ -7,6 +7,7 @@ from aiogram.types import (
 
 router = Router()
 
+
 @router.message(CommandStart())
 async def start(message: Message):
     description = (
@@ -29,7 +30,6 @@ async def start(message: Message):
     keyboard = ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
     await message.answer(description, reply_markup=keyboard)
     
-
 # Обработчик для команды /end
 @router.message(Command(commands=['end']))
 async def end(message: Message):
@@ -269,11 +269,11 @@ async def process_department_id(message: Message, state: FSMContext) -> None:
 
 async def show_summary(message: Message, data: dict[str, any]):
     client = Client(first_name=data["first_name"],
-              last_name=data["last_name"],
-              age=data["age"],
-              email=data["email"], 
-              phone=data["phone"], 
-              address=data["address"],
-              department_id=data["department_id"])
+            last_name=data["last_name"],
+            age=data["age"],
+            email=data["email"], 
+            phone=data["phone"], 
+            address=data["address"],
+            department_id=data["department_id"])
     result = await create_client(client)
     await message.answer(text="Успешно добавили клиента", reply_markup=ReplyKeyboardRemove())
